@@ -1,5 +1,5 @@
-﻿using KMA.ProgrammingInCSharp2022.Practice4Navigation.Navigation;
-using Lab1.Tools;
+﻿using Lab2.Navigation;
+using Lab2.Tools;
 using Lab2.Models;
 using System;
 using System.Collections.Generic;

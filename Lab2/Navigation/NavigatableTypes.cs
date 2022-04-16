@@ -1,4 +1,4 @@
-﻿namespace KMA.ProgrammingInCSharp2022.Practice4Navigation.Navigation
+﻿namespace Lab2.Navigation
 {
     enum MainNavigationTypes
     {

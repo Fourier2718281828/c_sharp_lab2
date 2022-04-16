@@ -64,7 +64,8 @@
 
         <DatePicker 
             Grid.Row="6" Grid.Column="0" 
-            Text="{Binding DateOfBirth, Mode=TwoWay,
+            
+            SelectedDate="{Binding DateOfBirth, Mode=TwoWay,
             UpdateSourceTrigger=PropertyChanged}"
             HorizontalAlignment="Stretch" 
             VerticalAlignment="Center"

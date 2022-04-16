@@ -107,12 +107,10 @@ namespace Lab2.Models
         #region Methods
         public void computeIsAdult()
         {
-            //computeAge();
             _isAdult = _age >= ADULT_AGE;
         } 
         public void computeAge()
         {
-            //if (DateOfBirth == null) _age = null;
             _age = (short)(DateTime.Now.Year - _dateOfBirth.Value.Year + 
                    ((
                      DateTime.Now.Month  >= _dateOfBirth.Value.Month &&
@@ -123,7 +121,6 @@ namespace Lab2.Models
 
         public void computeHasBirthday()
         {
-            //if (_dateOfBirth == null) _hasBirthday = false;
             _hasBirthday = (DateTime.Now.Day == _dateOfBirth.Value.Day) && (DateTime.Now.Month == _dateOfBirth.Value.Month);
         }
 
@@ -132,13 +129,10 @@ namespace Lab2.Models
 
         public void computeChineseZodiacSign()
         {
-            //if (DateOfBirth == null || !hasCorrectDate()) _chineseSign = null;
             _chineseSign = (ChineseZodiac)((_dateOfBirth.Value.Year - 4) % 12);
         }
         private WesternZodiac getWesternZodiacSign()
         {
-            //if (DateOfBirth == null || !hasCorrectDate()) return null;
-
             if (isIn(Month.Mar, 21, Month.Apr, 19)) return WesternZodiac.Aries;
             if (isIn(Month.Apr, 20, Month.May, 20)) return WesternZodiac.Taurus;
             if (isIn(Month.May, 21, Month.Jun, 21)) return WesternZodiac.Gemini;

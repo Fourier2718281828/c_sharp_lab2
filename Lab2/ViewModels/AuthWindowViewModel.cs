@@ -1,10 +1,7 @@
-﻿using KMA.ProgrammingInCSharp2022.Practice4Navigation.Navigation;
-using Lab1.Tools;
+﻿using Lab2.Navigation;
 using Lab2.Models;
+using Lab2.Tools;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 

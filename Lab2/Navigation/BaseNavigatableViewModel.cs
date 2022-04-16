@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using KMA.ProgrammingInCSharp2022.Practice4Navigation.Annotations;
+using Lab2.Annotations;
 
-namespace KMA.ProgrammingInCSharp2022.Practice4Navigation.Navigation
+namespace Lab2.Navigation
 {
     internal abstract class BaseNavigatableViewModel<TObject> : INotifyPropertyChanged where TObject : Enum
     {

@@ -31,7 +31,7 @@ using System;
 // ReSharper disable MemberCanBeProtected.Global
 // ReSharper disable InconsistentNaming
 
-namespace KMA.ProgrammingInCSharp2022.Practice4Navigation.Annotations
+namespace Lab2.Annotations
 {
   /// <summary>
   /// Indicates that the value of the marked element could be <c>null</c> sometimes,
