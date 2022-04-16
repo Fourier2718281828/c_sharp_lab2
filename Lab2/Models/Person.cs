@@ -9,10 +9,10 @@ namespace Lab2.Models
     internal class Person
     {
         #region Fields
-        private readonly String     _name;
-        private readonly String     _surname;
-        private readonly String     _email;
-        private readonly DateTime?  _dateOfBirth;
+        private String     _name;
+        private String     _surname;
+        private String     _email;
+        private DateTime?  _dateOfBirth;
         #endregion
 
         #region Constants
@@ -57,27 +57,33 @@ namespace Lab2.Models
         {
             return;
         }
+
+        public Person()
+            : this(null, null, null, null)
+        {
+            return;
+        }
         #endregion
 
         #region GeneralProperies
         public String Name
         {
-            get; init;
+            get; set;
         }
 
         public String Surname
         {
-            get; init;
+            get; set;
         }
 
         public String Email
         {
-            get; init;
+            get; set;
         }
 
         public DateTime? DateOfBirth
         {
-            get; init;
+            get; set;
         }
         #endregion
 

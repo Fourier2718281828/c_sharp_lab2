@@ -1,5 +1,4 @@
-﻿using Lab2.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Lab2
+namespace Lab2.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ResultWindowView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ResultWindowView : UserControl
     {
-        //private MainWindowViewModel _viewModel;
-        public MainWindow()
+        public ResultWindowView()
         {
             InitializeComponent();
-            DataContext /*= _viewModel*/ = new MainWindowViewModel();
-
         }
-
-
     }
 }

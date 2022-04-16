@@ -5,10 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab2"
         xmlns:views="clr-namespace:Lab2.Views"
+        xmlns:viewModels="clr-namespace:Lab2.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="260" Width="300">
-    <Grid>
-        <views:AuthWindowView>
-        </views:AuthWindowView>
-    </Grid>
+        Title="MainWindow" Height="275" Width="300"
+        Content="{Binding CurrentViewModel, 
+                  Mode=OneWay, 
+                  UpdateSourceTrigger=PropertyChanged}"
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <DataTemplate DataType="{ x:Type viewModels:AuthWindowViewModel}">
+            <views:AuthWindowView></views:AuthWindowView>
+        </DataTemplate>
+        <DataTemplate DataType="{ x:Type viewModels:ResultWindowViewModel}">
+            <views:ResultWindowView></views:ResultWindowView>
+        </DataTemplate>
+    </Window.Resources>
 </Window>
