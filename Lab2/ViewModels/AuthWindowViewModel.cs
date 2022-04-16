@@ -6,22 +6,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Lab2.ViewModels
 {
     internal class AuthWindowViewModel : INavigatable<MainNavigationTypes>
     {
         #region Fields
-        private Person _person = new();
+        private Person _person;
         private RelayCommand<object> _exitCommand;
         private RelayCommand<object> _proceedCommand;
         private readonly Action _exitNavigation;
         #endregion
 
         #region Constructors
-        public AuthWindowViewModel(Action exitNavigation)
+        public AuthWindowViewModel (Action exitNavigation, ref Person person)
         {
             _exitNavigation = exitNavigation;
+            _person = person; 
             return;
         }
         #endregion
@@ -70,9 +72,20 @@ namespace Lab2.ViewModels
             return (Name != null && Surname != null && Email != null && DateOfBirth != null);
         }
 
-        private void proceed()
+        private async void proceed()
         {
+            await Task.Run(() => _person.computeAge());
+            if(DateTime.Now < _person.DateOfBirth.Value.Date || _person.Age > 135)
+            {
+                MessageBox.Show("Incompetible date pick!");
+                return;
+            }
+            await Task.Run(() => _person.computeIsAdult());
+            await Task.Run(() => _person.computeSunSign());
+            await Task.Run(() => _person.computeChineseZodiacSign());
+            await Task.Run(() => _person.computeHasBirthday());
 
+            _exitNavigation.Invoke();
             return;
         }
         #endregion

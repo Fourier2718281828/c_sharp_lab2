@@ -1,4 +1,5 @@
 ﻿using KMA.ProgrammingInCSharp2022.Practice4Navigation.Navigation;
+using Lab2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Lab2.ViewModels
 {
     internal class MainWindowViewModel : BaseNavigatableViewModel<MainNavigationTypes>
     {
+        private Person _person = new();
         public MainWindowViewModel()
         {
             Navigate(MainNavigationTypes.Auth);
@@ -19,9 +21,9 @@ namespace Lab2.ViewModels
             switch (type)
             {
                 case MainNavigationTypes.Auth:
-                    return new AuthWindowViewModel(() => Navigate(MainNavigationTypes.Result));
+                    return new AuthWindowViewModel(() => Navigate(MainNavigationTypes.Result), ref _person);
                 case MainNavigationTypes.Result:
-                    return new ResultWindowViewModel(() => Navigate(MainNavigationTypes.Auth));
+                    return new ResultWindowViewModel(() => Navigate(MainNavigationTypes.Auth), ref _person);
                 default:
                     return null;
             }

@@ -82,7 +82,9 @@
             Content="Proceed"
             Foreground="DarkBlue"
             Background="CornflowerBlue"
-            FontSize="12">
+            FontSize="12"
+            FontWeight="Bold"
+            >
         </Button>
 
         <Button
@@ -94,7 +96,9 @@
             Content="Exit"
             Foreground="DarkBlue"
             Background="CornflowerBlue"
-            FontSize="12">
+            FontSize="12"
+            FontWeight="Bold"
+            >
         </Button>
     </Grid>
 </UserControl>

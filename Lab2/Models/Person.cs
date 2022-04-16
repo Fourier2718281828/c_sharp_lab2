@@ -9,10 +9,15 @@ namespace Lab2.Models
     internal class Person
     {
         #region Fields
-        private String     _name;
-        private String     _surname;
-        private String     _email;
-        private DateTime?  _dateOfBirth;
+        private String          _name;
+        private String          _surname;
+        private String          _email;
+        private DateTime?       _dateOfBirth;
+        private bool            _isAdult;
+        private WesternZodiac   _sunSign;
+        private ChineseZodiac   _chineseSign;
+        private bool            _hasBirthday;
+        public short            _age;
         #endregion
 
         #region Constants
@@ -68,40 +73,47 @@ namespace Lab2.Models
         #region GeneralProperies
         public String Name
         {
-            get; set;
+            get => _name;
+            set => _name = value;
         }
 
         public String Surname
         {
-            get; set;
+            get => _surname;
+            set => _surname = value;
         }
 
         public String Email
         {
-            get; set;
+            get => _email; 
+            set => _email = value;
         }
 
         public DateTime? DateOfBirth
         {
-            get; set;
+            get => _dateOfBirth;
+            set => _dateOfBirth = value;
         }
         #endregion
 
         #region ComputedProperties
-        public bool IsAdult => isAdult();
-        public WesternZodiac? SunSign => getWesternZodiacSign();
-        public ChineseZodiac? ChineseSign => getChineseZodiacSign();
-        public bool IsBirthday => hasBirthday();
-        public bool HasCorrectDate => hasCorrectDate();
-        public short? Age => getAge();
+        public bool IsAdult                => _isAdult;
+        public WesternZodiac SunSign       => _sunSign;
+        public ChineseZodiac ChineseSign   => _chineseSign;
+        public bool IsBirthday             => _hasBirthday;
+        public short? Age                   => _age;
         #endregion
 
         #region Methods
-        private bool isAdult() => Age >= ADULT_AGE;
-        private short? getAge()
+        public void computeIsAdult()
         {
-            if (DateOfBirth == null) return null;
-            return (short)(DateTime.Now.Year - _dateOfBirth.Value.Year + 
+            //computeAge();
+            _isAdult = _age >= ADULT_AGE;
+        } 
+        public void computeAge()
+        {
+            //if (DateOfBirth == null) _age = null;
+            _age = (short)(DateTime.Now.Year - _dateOfBirth.Value.Year + 
                    ((
                      DateTime.Now.Month  >= _dateOfBirth.Value.Month &&
                      DateTime.Now.Day    >= _dateOfBirth.Value.Day)  ||
@@ -109,19 +121,23 @@ namespace Lab2.Models
                    ));
         }
 
-        private bool hasCorrectDate()
+        public void computeHasBirthday()
         {
-            if (_dateOfBirth == null) return true;
-            return DateTime.Now >= _dateOfBirth.Value.Date && Age <= 135;
+            //if (_dateOfBirth == null) _hasBirthday = false;
+            _hasBirthday = (DateTime.Now.Day == _dateOfBirth.Value.Day) && (DateTime.Now.Month == _dateOfBirth.Value.Month);
         }
-        private bool hasBirthday()
+
+        public void computeSunSign() => _sunSign = getWesternZodiacSign();
+        
+
+        public void computeChineseZodiacSign()
         {
-            if (_dateOfBirth == null) return false;
-            return (DateTime.Now.Day == _dateOfBirth.Value.Day) && (DateTime.Now.Month == _dateOfBirth.Value.Month);
+            //if (DateOfBirth == null || !hasCorrectDate()) _chineseSign = null;
+            _chineseSign = (ChineseZodiac)((_dateOfBirth.Value.Year - 4) % 12);
         }
-        private WesternZodiac? getWesternZodiacSign()
+        private WesternZodiac getWesternZodiacSign()
         {
-            if (DateOfBirth == null || !hasCorrectDate()) return null;
+            //if (DateOfBirth == null || !hasCorrectDate()) return null;
 
             if (isIn(Month.Mar, 21, Month.Apr, 19)) return WesternZodiac.Aries;
             if (isIn(Month.Apr, 20, Month.May, 20)) return WesternZodiac.Taurus;
@@ -138,13 +154,6 @@ namespace Lab2.Models
 
             return WesternZodiac.Capricorn;
         }
-
-        private ChineseZodiac? getChineseZodiacSign()
-        {
-            if (DateOfBirth == null || !hasCorrectDate()) return null;
-            return (ChineseZodiac)((_dateOfBirth.Value.Year - 4) % 12);
-        }
-
         private bool isIn(Month m1, int d1, Month m2, int d2)
         {
             return _dateOfBirth >= new DateTime(_dateOfBirth.Value.Year, (int)m1, d1)

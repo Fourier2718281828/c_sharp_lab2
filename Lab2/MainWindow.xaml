@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Lab2.Views"
         xmlns:viewModels="clr-namespace:Lab2.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="275" Width="300"
+        Title="MainWindow" Height="280" Width="300"
         Content="{Binding CurrentViewModel, 
                   Mode=OneWay, 
                   UpdateSourceTrigger=PropertyChanged}"

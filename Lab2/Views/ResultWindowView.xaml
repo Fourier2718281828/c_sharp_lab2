@@ -6,5 +6,239 @@
              xmlns:local="clr-namespace:Lab2.Views"
              mc:Ignorable="d" 
              d:DesignHeight="275" d:DesignWidth="300">
-    Result Window
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2.5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock
+            Grid.Row="0" Grid.Column="1"
+            Text="Result"
+            FontWeight="Bold"
+            FontSize="20"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="1" Grid.Column="0"
+            Text="Name:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="2" Grid.Column="0"
+            Text="Surname:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+        <TextBlock
+            Grid.Row="3" Grid.Column="0"
+            Text="Email:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+        
+        <TextBlock
+            Grid.Row="4" Grid.Column="0"
+            Text="Date Of Birth:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="5" Grid.Column="0"
+            Text="Is Adult:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="6" Grid.Column="0"
+            Text="Sun Sign:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="7" Grid.Column="0"
+            Text="Chinese Sign:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="8" Grid.Column="0"
+            Text="Birthday:"
+            FontWeight="Bold"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+        
+        <!--RIGHT-->
+        
+        <TextBlock
+            Grid.Row="1" Grid.Column="1"
+            Text="{Binding Name, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="2" Grid.Column="1"
+            Text="{Binding Surname, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+        <TextBlock
+            Grid.Row="3" Grid.Column="1"
+            Text="{Binding Email, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="4" Grid.Column="1"
+            Text="{Binding DateOfBirth, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="5" Grid.Column="1"
+            Text="{Binding IsAdult, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="6" Grid.Column="1"
+            Text="{Binding SunSign, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="7" Grid.Column="1"
+            Text="{Binding ChineseSign, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <TextBlock
+            Grid.Row="8" Grid.Column="1"
+            Text="{Binding HasBirthday, Mode=OneWay,
+            UpdateSourceTrigger=PropertyChanged}"
+            FontSize="12"
+            Foreground="SlateGray"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            >
+        </TextBlock>
+
+        <Button
+            Grid.Row="9" Grid.Column="1"
+            Content="Exit"
+            Command="{Binding ExitCommand}"
+            Height="20" Width="70"
+            Margin="0 0 3 0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Foreground="DarkBlue"
+            Background="CornflowerBlue"
+            FontSize="10"
+            FontWeight="Bold"
+            >
+        </Button>
+
+        <!--<Button
+            Grid.Row="0" Grid.Column="0"
+            Content="Try Again"
+            Height="20" Width="70"
+            Margin="5 0 0 0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Foreground="DarkBlue"
+            Background="CornflowerBlue"
+            FontSize="10"
+            FontWeight="Bold"
+            >
+        </Button>-->
+    </Grid>
 </UserControl>
