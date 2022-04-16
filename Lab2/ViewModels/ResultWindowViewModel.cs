@@ -58,7 +58,7 @@ namespace Lab2.ViewModels
         }
 
         public string ChineseSign
-        {
+        { 
             get => _person.ChineseSign.ToString();
         }
 
