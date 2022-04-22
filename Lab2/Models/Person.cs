@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Lab3.Exceptions;
 
 namespace Lab2.Models
 {
@@ -17,7 +19,7 @@ namespace Lab2.Models
         private WesternZodiac   _sunSign;
         private ChineseZodiac   _chineseSign;
         private bool            _hasBirthday;
-        public short            _age;
+        public short?           _age;
         #endregion
 
         #region Constants
@@ -93,6 +95,8 @@ namespace Lab2.Models
         {
             get => _dateOfBirth;
             set => _dateOfBirth = value;
+                
+            
         }
         #endregion
 
@@ -111,6 +115,8 @@ namespace Lab2.Models
         } 
         public void computeAge()
         {
+            if (DateOfBirth == null) _age = null;
+
             _age = (short)(DateTime.Now.Year - _dateOfBirth.Value.Year + 
                    ((
                      DateTime.Now.Month  >= _dateOfBirth.Value.Month &&
@@ -124,8 +130,7 @@ namespace Lab2.Models
             _hasBirthday = (DateTime.Now.Day == _dateOfBirth.Value.Day) && (DateTime.Now.Month == _dateOfBirth.Value.Month);
         }
 
-        public void computeSunSign() => _sunSign = getWesternZodiacSign();
-        
+        public void computeSunSign() => _sunSign = getWesternZodiacSign();     
 
         public void computeChineseZodiacSign()
         {
@@ -152,6 +157,25 @@ namespace Lab2.Models
         {
             return _dateOfBirth >= new DateTime(_dateOfBirth.Value.Year, (int)m1, d1)
                 && _dateOfBirth <= new DateTime(_dateOfBirth.Value.Year, (int)m2, d2);
+        }
+
+        public void checkTheAge()
+        {
+            if (Age == null) return;
+
+            if (DateOfBirth.Value.Date > DateTime.Now)
+                throw new FutureDateException($"The person {Name ?? ""} hasn't been born yet");
+            if (Age >= 135)
+                throw new PastDateException($"The person {Name ?? ""} is too old. Age: {Age}");
+        }
+
+        public void checkTheEmail()
+        {
+            if (Email == null) return;
+
+            Regex email = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            if (!email.IsMatch(Email))
+                throw new BadEmailException($"Illigal email format.");
         }
         #endregion
     }

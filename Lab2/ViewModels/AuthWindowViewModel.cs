@@ -4,6 +4,7 @@ using Lab2.Tools;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using Lab3.Exceptions;
 
 namespace Lab2.ViewModels
 {
@@ -66,23 +67,40 @@ namespace Lab2.ViewModels
         #region Methods
         private bool allFieldsFilled()
         {
-            return (Name != null && Surname != null && Email != null && DateOfBirth != null);
+            return (!String.IsNullOrEmpty(Name)      &&
+                    !String.IsNullOrEmpty(Surname)   &&
+                    !String.IsNullOrEmpty(Email)     &&
+                    DateOfBirth != null);
         }
 
         private async void proceed()
         {
-            await Task.Run(() => _person.computeAge());
-            if(DateTime.Now < _person.DateOfBirth.Value.Date || _person.Age > 135)
+            try 
             {
-                MessageBox.Show("Incompetible date pick!");
-                return;
-            }
-            await Task.Run(() => _person.computeIsAdult());
-            await Task.Run(() => _person.computeSunSign());
-            await Task.Run(() => _person.computeChineseZodiacSign());
-            await Task.Run(() => _person.computeHasBirthday());
+                _person.checkTheEmail();
 
-            _exitNavigation.Invoke();
+                await Task.Run(() => _person.computeAge());
+                await Task.Run(() => _person.computeIsAdult());
+                await Task.Run(() => _person.computeSunSign());
+                await Task.Run(() => _person.computeChineseZodiacSign());
+                await Task.Run(() => _person.computeHasBirthday());
+
+                _person.checkTheAge();
+                _exitNavigation.Invoke();
+            }
+            catch(BadEmailException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (FutureDateException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch(PastDateException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
             return;
         }
         #endregion
